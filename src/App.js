@@ -80,9 +80,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-6">
-      <div className="flex justify-center items-center mb-6">
-        <h1 className="text-2xl font-bold flex items-center gap-2 mx-3">
+    <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl mx-auto">
+      {/* Header */}
+      <div className="flex justify-center items-center gap-3 mb-6 flex-wrap">
+        <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
           <img src="/water-icon.svg" alt="water" className="w-6 h-6" />
           Hydration Tracker
         </h1>
@@ -95,11 +96,11 @@ export default function App() {
       </div>
 
       {/* Top: Progress + Quick Add */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start mb-6">
         {/* Progress circle */}
         <div className="flex flex-col items-center">
-          <div className="w-48 h-48 rounded-full flex items-center justify-center bg-sky-50 dark:bg-slate-800">
-            <svg viewBox="0 0 36 36" className="w-36 h-36">
+          <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full flex items-center justify-center bg-sky-50 dark:bg-slate-800">
+            <svg viewBox="0 0 36 36" className="w-28 h-28 sm:w-36 sm:h-36">
               <path
                 d="M18 2a16 16 0 1 0 0 32 16 16 0 1 0 0-32Z"
                 fill="#e6f6ff"
@@ -142,7 +143,7 @@ export default function App() {
             <div className="text-sm text-slate-500 dark:text-slate-400">
               Dziś wypito
             </div>
-            <div className="text-xl font-semibold">
+            <div className="text-lg sm:text-xl font-semibold">
               {todayAmount} ml / {goal} ml
             </div>
             <div className="text-xs text-slate-400">
@@ -152,19 +153,19 @@ export default function App() {
         </div>
 
         {/* Quick Add */}
-        <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
-          <div className="flex items-center justify-between mb-3">
+        <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 w-full">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1">
             <div className="text-sm text-slate-600 dark:text-slate-300">
               Dodaj szybkie porcje
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-3">
+          <div className="flex flex-wrap gap-3 mb-3 justify-center sm:justify-start">
             {quickOptions.map((q) => (
               <button
                 key={q}
                 onClick={() => addIntake(q)}
-                className="flex flex-col items-center justify-center w-20 h-20 rounded-xl border shadow bg-gradient-to-b from-sky-100 to-white dark:from-slate-700 dark:to-slate-800"
+                className="flex flex-col items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-xl border shadow bg-gradient-to-b from-sky-100 to-white dark:from-slate-700 dark:to-slate-800"
               >
                 <span className="text-base font-semibold">{q}</span>
                 <span className="text-xs">ml</span>
@@ -180,27 +181,27 @@ export default function App() {
             </button>
           </div>
 
-          <div className="flex gap-3 items-center">
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
             <input
               type="number"
-              className="w-28 p-2 rounded-lg border dark:bg-slate-700"
+              className="w-full sm:w-28 p-2 rounded-lg border dark:bg-slate-700"
               value={inputMl}
               onChange={(e) => setInputMl(Number(e.target.value))}
             />
             <button
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 text-white"
+              className="flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 rounded-lg bg-sky-600 text-white"
               onClick={() => addIntake(Number(inputMl) || 0)}
             >
               <PlusCircle size={16} /> Dodaj
             </button>
             <button
-              className="flex items-center gap-2 px-3 py-2 min-w-400 rounded-lg border"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border flex items-center justify-center"
               onClick={undoLast}
             >
               <RefreshCw size={16} /> Cofnij
             </button>
             <button
-              className="px-3 py-2 rounded-lg border text-sm"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border text-sm"
               onClick={resetToday}
             >
               Reset
@@ -261,7 +262,7 @@ export default function App() {
         <div className="text-sm text-slate-600 dark:text-slate-300 mb-2">
           Ostatnie 7 dni
         </div>
-        <div style={{ width: "100%", height: 120 }}>
+        <div className="w-full h-40 sm:h-48">
           <ResponsiveContainer>
             <AreaChart data={last7Days}>
               <defs>
